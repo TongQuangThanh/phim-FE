@@ -1,1 +1,90 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~swiper/css";
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+.container-fluid {
+  padding: 0px;
+}
+
+.bg-all {
+  // background-color: #1f222a;
+  background-color: #111319;
+}
+
+.f-14 {
+  font-size: 14px;
+}
+
+.f-16 {
+  font-size: 16px;
+}
+
+.btn,
+.btn:focus,
+.btn:active {
+  outline: none;
+  box-shadow: none;
+}
+
+img {
+  object-fit: cover;
+}
+
+.bottom-left {
+  bottom: 1rem;
+  left: 1rem;
+}
+
+.swiper {
+  height: 100%;
+}
+
+.swiper-slide {
+  width: unset;
+  cursor: pointer;
+
+  .slide {
+    height: 40vh;
+    width: 17.5vw;
+    font-size: 12px;
+    img {
+      height: 80%;
+      width: 90%;
+      object-fit: cover;
+    }
+
+    .hide {
+      display: none;
+      // box-shadow: rgb(0 0 0 / 50%) 0px 0px 10px 0px;
+    }
+
+    &:hover {
+      img.poster {
+        display: none;
+      }
+      .hide {
+        display: block;
+        transition: transform 0.9s;
+      }
+    }
+  }
+}
+
+.wrapper:hover {
+  .series {
+    transform: scale(1.1);
+  }
+}
+
+.transform-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

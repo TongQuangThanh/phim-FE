@@ -1,0 +1,13 @@
+<app-header></app-header>
+
+<div class="container-fluid bg-all">
+  <img [src]="movie?.poster_url" style="z-index: -1;" class="w-100"/>
+  <div class="container pb-3">
+    <app-slide [title]="'Phim mới cập nhật'" [urlPath]="'moi-nhat'" [movies]="latest"></app-slide>
+    <app-slide [title]="'Phim chiếu rạp'" [urlPath]="'chieu-rap'" [movies]="cinema"></app-slide>
+    <app-slide [title]="'Phim bộ'" [urlPath]="'phim-bo'" [movies]="series"></app-slide>
+    <app-slide [title]="'Phim lẻ'" [urlPath]="'phim-le'" [movies]="single"></app-slide>
+    <app-slide [title]="'Phim hoạt hình'" [urlPath]="'hoat-hinh'" [movies]="anime"></app-slide>
+    <app-slide [title]="'TV Shows'" [urlPath]="'tv-shows'" [movies]="tvShows"></app-slide>
+  </div>
+</div>

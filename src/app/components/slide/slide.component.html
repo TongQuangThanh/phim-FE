@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-between align-items-center mt-3">
+  <h2 class="text-light">{{ title }}</h2>
+  <a class="text-primary text-decoration-none" [routerLink]="['/danh-sach', urlPath]">Xem thêm</a>
+</div>
+<swiper [config]="config">
+  <ng-template swiperSlide *ngFor="let item of movies">
+    <a class="slide text-decoration-none d-flex justify-content-center align-items-center"
+      [routerLink]="['/phim', item.slug]">
+      <img [src]="item.poster_url || item.thumb_url" class="rounded-4 poster" />
+      <div class="hide h-100 rounded-2 text-light shadow-lg bg-popup">
+        <img [src]="item.thumb_url || item.poster_url" class="w-100 h-50 rounded-top">
+        <div class="p-2">
+          <div class="f-16">{{ item?.name }}</div>
+          <div class="f-14 text-muted">{{ item?.origin_name }}</div>
+          <div class="my-2">
+            <span class="badge bg-secondary me-2 rounded-1 fw-normal" *ngFor="let item of item.category">{{ item.name }}</span>
+          </div>
+          <section>
+            {{
+            item.content.length > 150 && !showAllContent ? parseHtmlToText(item.content).slice(0, 150) + '...' :
+            parseHtmlToText(item.content)
+            }}
+            <a class="text-decoration-none" *ngIf="item.content.length > 150" [routerLink]="['/phim', item.slug]">
+              thêm
+            </a>
+          </section>
+        </div>
+      </div>
+    </a>
+  </ng-template>
+</swiper>
+
+<ng-template #popContent>
+  <!-- <div class="hide rounded-4">
+    <img [src]="item.poster_url">
+    <div class="">{{ item?.name }}</div>
+    <div>{{ item?.origin_name }}</div>
+    <div class="">
+      {{
+      item.content.length > 50 && !showAllContent ? parseHtmlToText(item.content).slice(0, 50) + '...' :
+      parseHtmlToText(item.content)
+      }}
+    </div>
+    <span *ngIf="item.content.length > 50" (click)="showAllContent = !showAllContent" class="text-primary">
+      {{ showAllContent ? 'rút gọn' : 'thêm' }}
+    </span>
+  </div> -->
+</ng-template>

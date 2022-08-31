@@ -1,0 +1,78 @@
+<app-header></app-header>
+<div class="container-fluid bg-all">
+  <div class="w-75 p-0 position-relative float-end">
+    <div class="w-100 poster-wrapper" [style.background-image]="'url(' + movie?.poster_url || movie?.poster_url + ')'">
+    </div>
+    <div class="left-layer"></div>
+    <div class="bottom-layer"></div>
+  </div>
+  <div class="p-4">
+    <div class="w-50 text-light">
+      <h2>{{ movie?.name }}</h2>
+      <h5>{{ movie?.origin_name }}</h5>
+      <p>
+        {{ movie?.year }}
+        {{ movie?.showtimes ? '|' : '' }} {{ parseHtmlToText(movie?.showtimes) }}
+        {{ movie?.lang ? '|' : '' }} {{ movie?.lang }}</p>
+      <p>
+        <span class="text-muted">Quốc gia: </span>
+        <span *ngFor="let item of movie?.country">{{ item.name }}</span>
+      </p>
+      <p>
+        <span class="badge bg-secondary me-2 rounded-1 fw-normal" *ngFor="let item of movie?.category">
+          {{ item.name }}
+        </span>
+      </p>
+      <p>
+        <span class="text-muted">Đạo diễn: </span>
+        <span *ngFor="let item of movie?.director; index as i">{{ i === 0 ? '' : ', ' }}{{ item }}</span>
+      </p>
+      <p>
+        <span class="text-muted">Diễn viên: <i class="bi bi-play"></i></span>
+        <span *ngFor="let item of movie?.actor; index as i">{{ i === 0 ? '' : ', ' }}{{ item }}</span>
+      </p>
+      <p>
+        <span class="text-muted">Mô tả: </span><span>{{ parseHtmlToText(movie?.content) }}</span>
+      </p>
+      <p>
+        <button class="btn btn-success me-2"><i class="bi bi-play me-3"></i>Xem phim</button>
+        <button class="btn btn-secondary me-2"><i class="bi bi-star me-2"></i>Thêm vào yêu thích</button>
+        <button class="btn btn-secondary me-2"><i class="bi bi-share me-2"></i>Chia sẻ</button>
+      </p>
+    </div>
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs mt-4">
+      <li [ngbNavItem]="1">
+        <a ngbNavLink>Tập phim</a>
+        <ng-template ngbNavContent>
+          <div class="py-3">
+            <swiper [config]="config">
+              <ng-template swiperSlide *ngFor="let item of episodes; index as i">
+                <div class="wrapper">
+                  <!--  -->
+                  <div class="position-relative series border m-3 rounded"
+                    [style.background-image]="'url(' + movie?.poster_url || movie?.poster_url + ')'">
+                    <a class="btn btn-success rounded-circle position-absolute transform-center"
+                      [routerLink]="['/xem-phim/' + item.slug]" [queryParams]="{tap: i + 1}">
+                      <i class="bi bi-play"></i>
+                    </a>
+                    <div class="position-absolute bottom-left text-light">Tập {{ i + 1 }}</div>
+                  </div>
+                </div>
+              </ng-template>
+            </swiper>
+          </div>
+        </ng-template>
+      </li>
+      <li [ngbNavItem]="2">
+        <a ngbNavLink>Two</a>
+        <ng-template ngbNavContent> </ng-template>
+      </li>
+      <li [ngbNavItem]="3">
+        <a ngbNavLink>Three</a>
+        <ng-template ngbNavContent></ng-template>
+      </li>
+    </ul>
+
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+  </div>
+</div>
